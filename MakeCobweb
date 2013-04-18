@@ -33,8 +33,9 @@ total:	clean all java2HTML
 all:	cmp NbLignesUtiles
 
 clean:
-	-@ rm -f *~
-	-@ rm -f cobweb/*.class cobweb/*~ 
+	-@ rm -f *~ *.class *.jar *.tar.gz
+	-@ rm -f cobweb/*.class cobweb/*~
+	-@ rm -Rf cobwebDoc
 
 # estimation du nombre de ligne java
 NbLignes :
