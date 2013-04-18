@@ -1,10 +1,6 @@
 /**
  * 
- * This is part of "Thot-riio".
- * 
- * "Thot-riio"  allows to index a web site.
- * 
- * Copyright (C) 2001 Emmanuel DESMONTILS
+ * Copyright (C) 2013 Emmanuel DESMONTILS
  * 
  * This library is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -24,7 +20,7 @@
  * 
  * 
  * E-mail:
- * Emmanuel.Desmontils@irin.univ-nantes.fr
+ * Emmanuel.Desmontils@univ-nantes.fr
  * 
  * 
  **/
