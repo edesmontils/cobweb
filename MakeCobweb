@@ -1,0 +1,52 @@
+#
+# Simple Cobweb Makefile, for a unix-like environment.
+#
+
+.SUFFIXES: .java .class
+
+JAVAC=javac
+JAVA=java
+JAVADOC=javadoc
+JAVAFLAGS=-O
+
+.java.class :
+	$(JAVAC) $(JAVAFLAGS)  $<
+
+SRC =   cobweb/Attribut.java \
+	cobweb/Cluster.java \
+	cobweb/Instance.java \
+	cobweb/NumericAttribut.java \
+	cobweb/SymbolicAttribut.java \
+	tstCobweb.java
+
+OBJ = $(SRC:.java=.class)
+
+Main: $(OBJ)
+
+cmp:	Main
+	jar cvf cobweb.jar cobweb/ 
+
+total:	clean all java2HTML
+	tar cvf cobwebDoc.tar cobwebDoc
+	gzip cobwebDoc.tar
+
+all:	cmp NbLignesUtiles
+
+clean:
+	-@ rm -f *~
+	-@ rm -f cobweb/*.class cobweb/*~ 
+
+# estimation du nombre de ligne java
+NbLignes :
+	cat cobweb/*.java | wc -l
+
+NbLignesUtiles :
+	cat cobweb/*.java | grep -v "*" | grep -v [[:space:]+]"//" | grep -v "trace" | wc -l
+
+# programmes écrits pour le projet bonom
+java2HTML :
+	echo "Création des documents HTML de documentation des programmes JAVA BONOM --->"
+	if [ -d cobwebDoc ]; then echo "    cobwebDoc existe";echo "    Effacement du contenu cobwebDoc"; rm -Rf cobwebDoc/*; else echo "    Création de cobwebDoc"; mkdir cobwebDoc; fi
+	echo "    Création des documents proprement dite"	
+	javadoc -J-Xmx32m -J-Xms32m -d cobwebDoc/ -public -use -version -author cobweb/*.java 
+	echo "<--- Création des documents HTML de documentation des programmes JAVA"
