@@ -1,4 +1,4 @@
-"cobweb" is a library that implement an old data clustering algorithm called COBWEB [1].
+"cobweb" is a library that implements an old data clustering algorithm called COBWEB [1].
 
 This library is under a LGPL License
 
